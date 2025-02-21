@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aplikasi Manajemen Keuangan</title>
+</head>
+<body>
+  <h1>Aplikasi Manajemen Keuangan Sederhana</h1>
+
+  <label for="pengeluaranBulanan">Pengeluaran Bulanan:</label>
+  <input type="number" id="pengeluaranBulanan" value="500"><br><br>
+
+  <label for="pengeluaranTahunan">Pengeluaran Tahunan:</label>
+  <input type="number" id="pengeluaranTahunan" value="6000"><br><br>
+
+  <button onclick="hitungDanTampilkan()">Hitung dan Tampilkan</button><br><br>
+
+  <p id="hasilTotal"></p>
+  <p id="hasilPerbandingan"></p>
+  <p id="hasilRataRata"></p>
+
+  <script>
+    function hitungTotalPengeluaran(pengeluaranBulanan, pengeluaranTahunan) {
+      const total = pengeluaranBulanan + pengeluaranTahunan;
+      return total;
+    }
+
+    function bandingkanPengeluaran(pengeluaranBulanan, pengeluaranTahunan) {
+      if (pengeluaranBulanan > pengeluaranTahunan / 12) {
+        return "Pengeluaran bulanan lebih besar dari rata-rata pengeluaran tahunan.";
+      } else if (pengeluaranBulanan < pengeluaranTahunan / 12) {
+        return "Pengeluaran bulanan lebih kecil dari rata-rata pengeluaran tahunan.";
+      } else {
+        return "Pengeluaran bulanan sama dengan rata-rata pengeluaran tahunan.";
+      }
+    }
+
+    function hitungRataRataPengeluaran(pengeluaranTahunan) {
+      const rataRata = pengeluaranTahunan / 12;
+      return rataRata;
+    }
+
+    function hitungDanTampilkan() {
+      const pengeluaranBulanan = parseInt(document.getElementById("pengeluaranBulanan").value);
+      const pengeluaranTahunan = parseInt(document.getElementById("pengeluaranTahunan").value);
+
+      const total = hitungTotalPengeluaran(pengeluaranBulanan, pengeluaranTahunan);
+      const perbandingan = bandingkanPengeluaran(pengeluaranBulanan, pengeluaranTahunan);
+      const rataRata = hitungRataRataPengeluaran(pengeluaranTahunan);
+
+      document.getElementById("hasilTotal").textContent = "Total Pengeluaran: " + total;
+      document.getElementById("hasilPerbandingan").textContent = perbandingan;
+      document.getElementById("hasilRataRata").textContent = "Rata-rata Pengeluaran Bulanan: " + rataRata;
+    }
+  </script>
+</body>
+</html>
